@@ -1,6 +1,7 @@
 const express = require('express');
 const _  = require('lodash');
 const bodyParser = require('body-parser');
+require('./config/config');
 
 require('./config/config');
 
@@ -15,3 +16,5 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT, () => {
     console.log(`app started at port ${process.env.PORT}`)
 })
+
+module.exports = {app}
