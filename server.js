@@ -9,7 +9,7 @@ const app = express();
 
 app.get('/', (req, res) => {
     res.send({
-        text : 'deployed from travis'
+        text : 'deployed from travis from github'
     })
 })
 
