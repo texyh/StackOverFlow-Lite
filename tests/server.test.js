@@ -7,6 +7,9 @@ describe('Server', () => {
         request(app)
             .get('/')
             .expect(200)
+            .expect((res) => {
+                expect(res.body.text).toBe('deployed from travis from github');
+            })
             .end(done);
     })
 })
