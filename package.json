@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha tests/**/*.test.js --ext-js",
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha tests/**/*.test.js --exit",
     "start": "node server.js",
     "lint": "eslint ./ --fix"
   },
