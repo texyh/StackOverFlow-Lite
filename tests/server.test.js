@@ -1,7 +1,7 @@
 
 import expect from 'expect';
 import request from 'supertest';
-import app from '../server';
+// import app from '../server';
 process.NODE_ENV = 'test';
 
 
