@@ -23,7 +23,7 @@ questionRoutes.get('/:id', (req, res) => {
 
 questionRoutes.post('/', (req, res) => {
   questionsController.save(req.body.question).then((question) => {
-    res.send({
+    res.status(201).send({
       results: question,
     });
   }).catch(() => res.status(404).send({ error: 'An Error Occured' }));
@@ -31,7 +31,7 @@ questionRoutes.post('/', (req, res) => {
 
 questionRoutes.post('/:id/answers', (req, res) => {
   questionsController.addAnswer(req.params.id, req.body.answer).then((answer) => {
-    res.send({
+    res.status(201).send({
       results: answer,
     });
   }).catch(error => res.status(400).send({ error }));
