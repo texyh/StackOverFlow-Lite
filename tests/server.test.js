@@ -37,15 +37,14 @@ describe('Server', () => {
       .end(done);
   })
 
-  it("should get saved questions", (done) => {
-    request(app)
+  it("should get saved questions", async () => {
+    await request(app)
       .get("/questions")
       .expect(200)
       .expect((res) => {
         expect(res.body.results.length).toBe(1)
         expect(res.body.results[0].question).toBe("sup?")
       })
-      .end(done)
   })
 
   it('should return true', () => {
