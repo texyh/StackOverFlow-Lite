@@ -1,7 +1,7 @@
 
-import { Router } from 'express';
+import * as express from 'express';
 
-const userRoutes = new Router();
+const userRoutes = express.Router();
 
 userRoutes.post('/signIn', (req, res) => {
   res.send('thanks for logging in');
