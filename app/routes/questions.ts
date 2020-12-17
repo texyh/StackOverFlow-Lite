@@ -1,8 +1,7 @@
-const express = require('express');
+import * as express from 'express';
+import  * as questionsController from '../controllers'
 
 const questionRoutes = express.Router();
-
-const { questionsController } = require('../controllers');
 
 
 questionRoutes.get('/', (req, res) => {
@@ -37,4 +36,4 @@ questionRoutes.post('/:id/answers', (req, res) => {
   }).catch(error => res.status(400).send({ error }));
 });
 
-module.exports = questionRoutes;
+export default questionRoutes;

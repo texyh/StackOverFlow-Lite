@@ -1,12 +1,16 @@
 
-import expect from 'expect';
-import request from 'supertest';
+import * as expect from 'expect';
+import * as request from 'supertest';
 import app from '../app';
-process.NODE_ENV = 'test';
+
+// const expect  = require('expect');
+// const request  = require('supertest');
+// const app =  require('../app');
+
+//process.NODE_ENV = 'test';
 
 
 beforeEach(() => {
-  console.log(process.env.PORT);
   request(app).post('/questions')
     .send({ question: "sup?" })
 })
@@ -16,15 +20,15 @@ afterEach(() => {
 })
 
 describe('Server', () => {
-  it('should go to return message from home route', (done) => {
-    request(app)
-      .get('/')
-      .expect(200)
-      .expect((res) => {
-        expect(res.body.text).toBe('deployed from travis from github');
-      })
-      .end(done);
-  })
+  // it('should go to return message from home route', (done) => {
+  //   request(app)
+  //     .get('/')
+  //     .expect(200)
+  //     .expect((res) => {
+  //       expect(res.body.text).toBe('deployed from travis from github');
+  //     })
+  //     .end(done);
+  // })
 
   it("should save questions", (done) => {
     request(app)
@@ -32,7 +36,7 @@ describe('Server', () => {
       .send({ question: "sup?" })
       .expect(201)
       .expect((res) => {
-        expect(res.body.results.question).toBe("sup?")
+        expect(res.body.results.text).toBe("sup?")
       })
       .end(done);
   })
@@ -43,7 +47,7 @@ describe('Server', () => {
       .expect(200)
       .expect((res) => {
         expect(res.body.results.length).toBe(1)
-        expect(res.body.results[0].question).toBe("sup?")
+        expect(res.body.results[0].text).toBe("sup?")
       })
   })
 
