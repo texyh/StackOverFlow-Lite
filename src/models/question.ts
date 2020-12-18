@@ -1,10 +1,10 @@
-export interface IQuestion {
+import { Answer } from "./Answer";
+
+export interface Question {
     id: number
     text: string
-    answers: IAnswer[]
+    answers: Answer[]
 }
 
-export interface IAnswer {
 
-}
 

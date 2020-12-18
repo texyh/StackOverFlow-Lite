@@ -25,7 +25,7 @@ describe('Server', () => {
   //     .get('/')
   //     .expect(200)
   //     .expect((res) => {
-  //       expect(res.body.text).toBe('deployed from travis from github');
+  //       expect(res.body.api).toBe('api version 1');
   //     })
   //     .end(done);
   // })
@@ -50,13 +50,5 @@ describe('Server', () => {
         expect(res.body.results[0].text).toBe("sup?")
       })
   })
-
-  it('should return true', () => {
-    expect(true).toBeTruthy();
-  });
-
-  it('should be false', () => {
-    expect(false).toBeFalsy();
-  });
 
 });
