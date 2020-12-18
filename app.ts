@@ -10,7 +10,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use('/', (req, res) => res.send({api: "api version 1"}));
+app.get('/', (req, res) => res.send({api: "api version 1"}));
 app.use('/questions', questionRoutes);
 app.use('/users', userRoutes);
 app.use('/answers', answerRoutes);
