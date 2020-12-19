@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
-
+console.log('============== ' + process.env.DATABASE_URL)
 module.exports = {
   "type": "postgres",
   "host": process.env.DATEBASE_HOST,
