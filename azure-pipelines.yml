@@ -15,7 +15,7 @@ steps:
   displayName: 'install dependencies'
 
 - script: |
-    yarn build'
+    yarn build
   displayName: build project"
 
 - task: DockerCompose@0
