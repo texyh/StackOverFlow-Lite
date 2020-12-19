@@ -1,6 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
-import { Answer } from "./Answer";
-
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 @Entity("Questions")
 export class Question {
 
@@ -12,6 +10,19 @@ export class Question {
 
     @OneToMany(() => Answer, answer => answer.question)
     answers: Answer[]
+}
+
+@Entity("Answers")
+export class Answer {
+
+    @PrimaryColumn('uuid')
+    id: string
+
+    @Column("text")
+    text: string
+
+    @ManyToOne(() => Question, question => question.answers)
+    question: Question
 }
 
 

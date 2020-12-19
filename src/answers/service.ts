@@ -1,6 +1,5 @@
-import { Answer } from "../models/Answer";
 import {getRepository} from 'typeorm';
-import { Question } from "../models/Question";
+import { Answer, Question } from "../models/Question";
 import { v4 as uuidv4 } from 'uuid';
 
 const answerRepository = () => getRepository(Answer);

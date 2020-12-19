@@ -1,7 +1,6 @@
 
 import * as express from 'express';
 import {Request, Response} from 'express';
-import { Question } from 'src/models/Question';
 import  * as controllers from './controllers'
 
 const routes = express.Router();

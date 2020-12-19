@@ -1,5 +1,5 @@
 
-import dbConnection from 'db';
+import dbConnection from './db';
 import app from './app';
 
 dbConnection().then(x => {

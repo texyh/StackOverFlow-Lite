@@ -1,5 +1,3 @@
-import { Answer } from "../models/Answer";
-import { Question } from "../models/Question";
 import { AnswerService } from "./service";
 
 export const saveAnswer = async (questionId: string, answer: string): Promise<string> => {
