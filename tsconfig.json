@@ -8,6 +8,7 @@
     "outDir": "./dist",
     "strict": true,
     "pretty": true,
+    "baseUrl": "./",
     "declaration": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
