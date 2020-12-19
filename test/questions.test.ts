@@ -1,12 +1,10 @@
-
 import dbConnection from '../db';
-import { Question } from '@src/models/Question';
 import * as request from 'supertest';
 import { Connection, getRepository } from 'typeorm';
 import app from '../app';
 import {expect} from 'chai';
 import { v4 as uuidv4, validate as uuidValidate } from 'uuid';
-import 'module-alias/register';
+import { Question } from '../src/models/Question';
 
 let connection: Connection;
 let question: Question;
@@ -20,7 +18,7 @@ after(async () => {
 });
 
 beforeEach( async () => {
-  const repository = getRepository(Question)
+  const repository = connection.getRepository(Question)
   question = new Question();
   question.id = uuidv4();
   question.text = "how do you split a string in javascript?";
@@ -28,7 +26,7 @@ beforeEach( async () => {
 })
 
 afterEach( async () => {
-  const repository = getRepository(Question)
+  const repository = connection.getRepository(Question)
   await repository.remove(question);
 })
 

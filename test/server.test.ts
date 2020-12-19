@@ -1,4 +1,3 @@
-
 import * as expect from 'expect';
 import * as request from 'supertest';
 import app from '../app';
