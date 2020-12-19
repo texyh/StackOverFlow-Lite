@@ -8,7 +8,6 @@
     "outDir": "./dist",
     "strict": true,
     "pretty": true,
-    "baseUrl": "./",
     "declaration": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
@@ -16,8 +15,14 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "strictPropertyInitialization": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./src/*"
+      ]
+    }
   },
-  "include": ["app/**/*", "./", "config"],
+  "include": ["src/**/*", "db.ts", "server.ts", "app.ts", "test/**/*"],
   "exclude": ["node_modules", "dist"]
 }
