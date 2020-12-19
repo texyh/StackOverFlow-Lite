@@ -14,7 +14,7 @@ steps:
     yarn install
   displayName: 'install dependencies'
 
-- script: echo $NODE_PATH
+- script: echo $(NODE_PATH)
   displayName: "checking node path"
 
 - script: |
