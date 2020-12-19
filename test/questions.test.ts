@@ -1,11 +1,12 @@
 
-import dbConnection from '../db'
-import { Question } from '../src/models/Question';
+import dbConnection from '../db';
+import { Question } from '@src/models/Question';
 import * as request from 'supertest';
 import { Connection, getRepository } from 'typeorm';
 import app from '../app';
 import {expect} from 'chai';
 import { v4 as uuidv4, validate as uuidValidate } from 'uuid';
+import 'module-alias/register';
 
 let connection: Connection;
 let question: Question;

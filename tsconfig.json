@@ -15,7 +15,10 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "strictPropertyInitialization": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "paths": {
+      "@src/*": ["src/*"],
+    }
   },
   "include": ["app/**/*", "./", "config"],
   "exclude": ["node_modules", "dist"]
