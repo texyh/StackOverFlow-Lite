@@ -14,9 +14,12 @@ steps:
     yarn install
   displayName: 'install dependencies'
 
+- script: echo $NODE_PATH
+  displayName: "checking node path"
+
 - script: |
     yarn build
-  displayName: build project"
+  displayName: "build project"
 
 - task: DockerCompose@0
   displayName: 'docker-compose down'
