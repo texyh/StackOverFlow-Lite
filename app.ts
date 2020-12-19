@@ -1,7 +1,6 @@
 
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import './config/config';
 import questionRoutes  from './src/questions/routes';
 import userRoutes from './src/users/routes';
 import answerRoutes from './src/answers/routes';

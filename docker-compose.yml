@@ -1,0 +1,12 @@
+version: '3'
+services:
+
+  postgresql:
+    image: bitnami/postgresql:11.7.0
+    environment:
+      POSTGRESQL_USERNAME: root
+      POSTGRESQL_PASSWORD: Pass@word1
+      POSTGRESQL_DATABASE: Stackoverflow-liteDB
+    ports:
+      - 5432:5432
+      

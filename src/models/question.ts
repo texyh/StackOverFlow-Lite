@@ -1,8 +1,16 @@
-import { Answer } from "./Answer";
+import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm"
+import { Answer } from "./Answer"
 
-export interface Question {
-    id: number
+@Entity("Questions")
+export class Question {
+
+    @PrimaryColumn('uuid')
+    id: string
+
+    @Column({type: "text"})
     text: string
+
+    @OneToMany(() => Answer, answer => answer.question)
     answers: Answer[]
 }
 

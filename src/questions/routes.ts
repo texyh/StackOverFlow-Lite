@@ -13,7 +13,7 @@ routes.get('/', (req: Request, res: Response) => {
 });
 
 routes.get('/:id', (req: Request, res: Response) => {
-  controllers.get(+req.params.id).then((question) => {
+  controllers.get(req.params.id).then((question) => {
     res.send({
       results: question,
     });
@@ -21,9 +21,9 @@ routes.get('/:id', (req: Request, res: Response) => {
 });
 
 routes.post('/', (req: Request, res: Response) => {
-  controllers.save(req.body.question).then((question) => {
+  controllers.save(req.body.question).then((id) => {
     res.status(201).send({
-      results: question,
+      id: id,
     });
   }).catch(() => res.status(404).send({ error: 'An Error Occured' }));
 });
