@@ -10,12 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../db");
-const Question_1 = require("../src/models/Question");
 const request = require("supertest");
-const typeorm_1 = require("typeorm");
 const app_1 = require("../app");
 const chai_1 = require("chai");
 const uuid_1 = require("uuid");
+const Question_1 = require("../src/models/Question");
 let connection;
 let question;
 before(() => __awaiter(void 0, void 0, void 0, function* () {
@@ -25,14 +24,14 @@ after(() => __awaiter(void 0, void 0, void 0, function* () {
     yield (connection === null || connection === void 0 ? void 0 : connection.close());
 }));
 beforeEach(() => __awaiter(void 0, void 0, void 0, function* () {
-    const repository = typeorm_1.getRepository(Question_1.Question);
+    const repository = connection.getRepository(Question_1.Question);
     question = new Question_1.Question();
     question.id = uuid_1.v4();
     question.text = "how do you split a string in javascript?";
     yield repository.save(question);
 }));
 afterEach(() => __awaiter(void 0, void 0, void 0, function* () {
-    const repository = typeorm_1.getRepository(Question_1.Question);
+    const repository = connection.getRepository(Question_1.Question);
     yield repository.remove(question);
 }));
 describe('Question Route', () => {
