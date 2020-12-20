@@ -12,8 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AnswerService = void 0;
 const typeorm_1 = require("typeorm");
 const Question_1 = require("../models/Question");
+const Answer_1 = require("../models/Answer");
 const uuid_1 = require("uuid");
-const answerRepository = () => typeorm_1.getRepository(Question_1.Answer);
+const answerRepository = () => typeorm_1.getRepository(Answer_1.Answer);
 const questionRepository = () => typeorm_1.getRepository(Question_1.Question);
 class AnswerService {
     constructor() {
@@ -39,7 +40,7 @@ class AnswerService {
                     error.message = "Invalid questionId";
                     Promise.reject(error);
                 }
-                const answer = new Question_1.Answer();
+                const answer = new Answer_1.Answer();
                 answer.text = text;
                 answer.id = uuid_1.v4();
                 answer.question = question;

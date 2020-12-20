@@ -1,4 +1,5 @@
-import { Answer, Question } from "../src/models/Question";
+import { Question } from "../src/models/Question";
+import { Answer } from "../src/models/Answer";
 import { Connection, Repository } from "typeorm";
 import dbConnection from "../db";
 import { v4 as uuidv4, validate as uuidValidate } from 'uuid';

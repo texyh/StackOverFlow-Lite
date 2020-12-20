@@ -9,8 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Answer = exports.Question = void 0;
+exports.Question = void 0;
 const typeorm_1 = require("typeorm");
+const Answer_1 = require("./Answer");
 let Question = class Question {
 };
 __decorate([
@@ -22,33 +23,11 @@ __decorate([
     __metadata("design:type", String)
 ], Question.prototype, "text", void 0);
 __decorate([
-    typeorm_1.OneToMany(() => Answer, answer => answer.question),
+    typeorm_1.OneToMany(() => Answer_1.Answer, answer => answer.question),
     __metadata("design:type", Array)
 ], Question.prototype, "answers", void 0);
 Question = __decorate([
     typeorm_1.Entity("Questions")
 ], Question);
 exports.Question = Question;
-let Answer = class Answer {
-};
-__decorate([
-    typeorm_1.PrimaryColumn('uuid'),
-    __metadata("design:type", String)
-], Answer.prototype, "id", void 0);
-__decorate([
-    typeorm_1.Column("text"),
-    __metadata("design:type", String)
-], Answer.prototype, "text", void 0);
-__decorate([
-    typeorm_1.ManyToOne(() => Question, question => question.answers),
-    __metadata("design:type", Question)
-], Answer.prototype, "question", void 0);
-__decorate([
-    typeorm_1.Column({ type: "bool", default: false }),
-    __metadata("design:type", Boolean)
-], Answer.prototype, "isCorrect", void 0);
-Answer = __decorate([
-    typeorm_1.Entity("Answers")
-], Answer);
-exports.Answer = Answer;
 //# sourceMappingURL=Question.js.map

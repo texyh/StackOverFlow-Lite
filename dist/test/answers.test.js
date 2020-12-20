@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Question_1 = require("../src/models/Question");
+const Answer_1 = require("../src/models/Answer");
 const db_1 = require("../db");
 const uuid_1 = require("uuid");
 const request = require("supertest");
@@ -23,7 +24,7 @@ let answerRepository;
 before(() => __awaiter(void 0, void 0, void 0, function* () {
     connection = yield db_1.default(false, "answers");
     repository = connection.getRepository(Question_1.Question);
-    answerRepository = connection.getRepository(Question_1.Answer);
+    answerRepository = connection.getRepository(Answer_1.Answer);
 }));
 after(() => __awaiter(void 0, void 0, void 0, function* () {
     yield (connection === null || connection === void 0 ? void 0 : connection.close());
@@ -32,7 +33,7 @@ beforeEach(() => __awaiter(void 0, void 0, void 0, function* () {
     question = new Question_1.Question();
     question.id = uuid_1.v4();
     question.text = "how do you split a string in javascript?";
-    answer = new Question_1.Answer();
+    answer = new Answer_1.Answer();
     answer.id = uuid_1.v4();
     answer.text = uuid_1.v4();
     answer.text = ".split(''), example: joe.split('')";
