@@ -1,30 +1,41 @@
 
-import {Question} from '../models/question';
+import {Question} from '../models/Question';
+import { QuestionService } from './service';
 
-const questions: Question[] = [];
-
-export const getAll = (): Promise<Question[]> => Promise.resolve(questions);
-
-export const get = (id: number): Promise<Question> => {
-  const question = questions.find(x => x.id == id);
-  if (question) {
-    return Promise.resolve(question);
+export const getAll = async (): Promise<Question[]> => {
+  try {
+    const questionService = new QuestionService();
+    const questions = questionService.getAllQuestions()
+    return Promise.resolve(questions)
+  } catch (error) {
+    return Promise.reject(error)
   }
+}
 
-  return Promise.reject('No question with that id exist');
+export const get = async (id: string): Promise<Question> => {
+
+  try {
+    const questionService = new QuestionService();
+    const question = await questionService.getQuestionById(id);
+    if (question) {
+      return Promise.resolve(question);
+    }
+  
+    return Promise.reject('No question with that id exist');
+  } catch (error) {
+    return Promise.reject(error);
+  }
 };
 
-export const save = (question: string): Promise<Question> => {
-  const id = questions.length + 1;
-  const answers: Question[] = [];
-  const savedQuestion = {
-    id,
-    text: question,
-    answers
-  };
+export const save = async (question: string): Promise<string | null> => {
+  try {
+    const questionService = new QuestionService();
+    const id = await questionService.saveQuestion(question);
+    return Promise.resolve(id);
 
-  questions.push(savedQuestion);
-  return Promise.resolve(savedQuestion);
+  } catch (error) {
+    return Promise.resolve(error);
+  }
 };
 
 

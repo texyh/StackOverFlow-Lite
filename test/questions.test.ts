@@ -1,11 +1,33 @@
-
-import * as expect from 'expect';
+import dbConnection from '../db';
 import * as request from 'supertest';
+import { Connection, getRepository } from 'typeorm';
 import app from '../app';
+import {expect} from 'chai';
+import { v4 as uuidv4, validate as uuidValidate } from 'uuid';
+import { Question } from '../src/models/Question';
 
-beforeEach(() => {
-  request(app).post('/questions')
-    .send({ question: "how do you split a string in javascript?" })
+let connection: Connection;
+let question: Question;
+
+before(async () => {
+  connection = await dbConnection(false);
+})
+
+after(async () => {
+  await connection?.close();
+});
+
+beforeEach( async () => {
+  const repository = connection.getRepository(Question)
+  question = new Question();
+  question.id = uuidv4();
+  question.text = "how do you split a string in javascript?";
+  await repository.save(question);
+})
+
+afterEach( async () => {
+  const repository = connection.getRepository(Question)
+  await repository.remove(question);
 })
 
 describe('Question Route', () => {
@@ -16,7 +38,8 @@ describe('Question Route', () => {
       .send({ question: "how do you split a string in javascript?" })
       .expect(201)
       .expect((res) => {
-        expect(res.body.results.text).toBe("how do you split a string in javascript?")
+        expect(res.body.id).to.not.be.empty
+        expect(uuidValidate(res.body.id)).to.be.true
       })
       .end(done);
   })
@@ -26,17 +49,16 @@ describe('Question Route', () => {
       .get("/questions")
       .expect(200)
       .expect((res) => {
-        expect(res.body.results.length).toBe(1)
-        expect(res.body.results[0].text).toBe("how do you split a string in javascript?")
+        expect(res.body.results.length).to.not.be.equal(0)
       })
   })
 
   it("should get a question given the questionId", async () => {
       await request(app)
-            .get('/questions/1')
+            .get(`/questions/${question.id}`)
             .expect(200)
             .expect((res) => {
-                expect(res.body.results.text).toBe("how do you split a string in javascript?")
+                expect(res.body.results.text).to.be.equal("how do you split a string in javascript?")
             })
   })
 

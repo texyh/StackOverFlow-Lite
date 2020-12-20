@@ -12,5 +12,35 @@ steps:
 
 - script: |
     yarn install
-    yarn run test
-  displayName: 'yarn install and test'
+  displayName: 'install dependencies'
+
+# - script: |
+#     yarn build
+#   displayName: "build project"
+
+- task: DockerCompose@0
+  displayName: 'docker-compose down'
+  condition: always()
+  inputs:
+    action: 'Run a Docker Compose command'
+    dockerComposeCommand: 'down --remove-orphans'
+
+- task: DockerCompose@0
+  displayName: 'docker-compose up'
+  inputs:
+    action: 'Run a Docker Compose command'
+    dockerComposeCommand: 'up -d --build'
+
+- script: yarn run migration:run:staging
+  displayName: 'run database migration'
+
+- script: yarn run test
+  displayName: 'run tests'
+
+- task: DockerCompose@0
+  displayName: 'docker-compose down'
+  condition: always()
+  inputs:
+    action: 'Run a Docker Compose command'
+    dockerComposeCommand: 'down'
+    

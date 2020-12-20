@@ -1,20 +1,21 @@
-import { Answer } from "src/models/Answer";
-import { Question } from "src/models/question";
-const questions: Question[] = [];
+import { AnswerService } from "./service";
 
-
-export const addAnswer = (questionId: number, answer: string): Promise<Answer> => {
-    const question = questions.find(x => x.id == questionId);
-      if (question) {
-        const savedAnswer = {
-          id: question.answers.length + 1,
-          answer,
-        };
-        question.answers.push(savedAnswer);
-        const index = questions.findIndex(x => x.id == questionId);
-        questions.splice(index, 1, question);
-        return Promise.resolve(savedAnswer);
-      }
-      return Promise.reject(`no question with id ${questionId} was found`);
+export const saveAnswer = async (questionId: string, answer: string): Promise<string> => {
+    try {
+      const answerService = new AnswerService();
+      const id = await answerService.saveAnswer(answer, questionId);
+      return Promise.resolve(id);
+    } catch (error) {
+      return Promise.reject(error);
+    } 
   };
+
+export const markAnswerCorrect = async(questionId: string , answerId: string) :Promise<void> => {
+  try {
+    const answerService = new AnswerService();
+    await answerService.markAnswerCorrect(questionId, answerId);
+  } catch (error) {
+    
+  }
+}
   
