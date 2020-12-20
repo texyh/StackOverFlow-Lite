@@ -12,6 +12,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.send({api: "api version 1"}));
 app.use('/questions', questionRoutes);
 app.use('/users', userRoutes);
-app.use('/answers', answerRoutes);
+app.use('/questions', answerRoutes);
 
 export default app;

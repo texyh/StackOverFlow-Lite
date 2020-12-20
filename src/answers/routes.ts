@@ -13,5 +13,11 @@ routes.post('/:id/answers', (req: Request, res: Response) => {
     }).catch(error => res.status(400).send({ error }));
   });
 
+routes.put('/:quesionId/answers/:answerId/mark-correct', (req: Request, res: Response) => {
+  controllers.markAnswerCorrect(req.params.questionId, req.params.answerId).then(() => {
+    res.status(200).send()
+  }).catch(error => res.status(400).send({error}))
+})
+
 
 export default routes;

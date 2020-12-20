@@ -23,6 +23,9 @@ export class Answer {
 
     @ManyToOne(() => Question, question => question.answers)
     question: Question
+
+    @Column({type: "bool", default: false})
+    isCorrect: boolean;
 }
 
 

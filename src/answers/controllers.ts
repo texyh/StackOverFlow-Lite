@@ -9,4 +9,13 @@ export const saveAnswer = async (questionId: string, answer: string): Promise<st
       return Promise.reject(error);
     } 
   };
+
+export const markAnswerCorrect = async(questionId: string , answerId: string) :Promise<void> => {
+  try {
+    const answerService = new AnswerService();
+    await answerService.markAnswerCorrect(questionId, answerId);
+  } catch (error) {
+    
+  }
+}
   
