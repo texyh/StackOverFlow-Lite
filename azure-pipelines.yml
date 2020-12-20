@@ -14,9 +14,9 @@ steps:
     yarn install
   displayName: 'install dependencies'
 
-# - script: |
-#     yarn build
-#   displayName: "build project"
+- script: |
+    yarn build
+  displayName: "build project"
 
 - task: DockerCompose@0
   displayName: 'docker-compose down'
@@ -31,10 +31,10 @@ steps:
     action: 'Run a Docker Compose command'
     dockerComposeCommand: 'up -d --build'
 
-- script: yarn run migration:run:staging
+- script: docker ps && yarn run migration:run:staging
   displayName: 'run database migration'
 
-- script: yarn run test
+- script: yarn run test:staging
   displayName: 'run tests'
 
 - task: DockerCompose@0
