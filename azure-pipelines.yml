@@ -34,7 +34,7 @@ steps:
 - script: yarn run migration:run:staging
   displayName: 'run database migration'
 
-- script: yarn run test
+- script: yarn run test:staging
   displayName: 'run tests'
 
 - task: DockerCompose@0
