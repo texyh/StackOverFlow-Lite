@@ -14,9 +14,9 @@ steps:
     yarn install
   displayName: 'install dependencies'
 
-# - script: |
-#     yarn build
-#   displayName: "build project"
+- script: |
+    yarn build
+  displayName: "build project"
 
 - task: DockerCompose@0
   displayName: 'docker-compose down'
