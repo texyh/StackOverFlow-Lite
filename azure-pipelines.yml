@@ -2,7 +2,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'macOS-10.15'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: NodeTool@0
