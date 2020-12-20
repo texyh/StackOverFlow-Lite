@@ -14,7 +14,7 @@ let repository: Repository<Question>;
 let answerRepository: Repository<Answer>;
 
 before(async () => {
-  connection = await dbConnection({enableLogging: false, name: "answers"});
+  connection = await dbConnection(false, "answers");
   repository = connection.getRepository(Question)
   answerRepository = connection.getRepository(Answer)
 })

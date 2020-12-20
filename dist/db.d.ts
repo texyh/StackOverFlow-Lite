@@ -1,4 +1,2 @@
-declare const dbConnection: ({ enableLogging }?: {
-    enableLogging: boolean;
-}) => Promise<import("typeorm").Connection>;
+declare const dbConnection: (enableLogging?: boolean, name?: string) => Promise<import("typeorm").Connection>;
 export default dbConnection;

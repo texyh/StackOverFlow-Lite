@@ -2,8 +2,7 @@ import { createConnection } from 'typeorm';
 import * as dotenv from 'dotenv';
 dotenv.config({ path: `${__dirname}.env.${process.env.NODE_ENV}` })
 
-console.log(__dirname + "src/models/*{.js,.ts}");
-const dbConnection = ({enableLogging = true, name = "default" }) => {
+const dbConnection = (enableLogging = true, name = "default") => {
   return createConnection({
     logging: enableLogging,
     name: name,

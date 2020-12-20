@@ -10,7 +10,7 @@ let connection: Connection;
 let question: Question;
 
 before(async () => {
-  connection = await dbConnection({enableLogging: false});
+  connection = await dbConnection(false);
 })
 
 after(async () => {

@@ -7,4 +7,5 @@ export declare class Answer {
     id: string;
     text: string;
     question: Question;
+    isCorrect: boolean;
 }
