@@ -65,6 +65,7 @@ describe("Answer route", () => {
         .send()
         .expect(200)
         .expect( async (res) => {
+            console.log(res.body)
             const ans = await answerRepository.findOne(answer.id);
             expect(ans?.isCorrect).to.be.true;
         })
