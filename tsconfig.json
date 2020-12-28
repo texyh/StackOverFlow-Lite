@@ -17,11 +17,6 @@
     "strictPropertyInitialization": false,
     "noImplicitAny": false,
     "baseUrl": ".",
-    "paths": {
-      "*": [
-        "./src/*"
-      ]
-    }
   },
   "include": ["src/**/*", "db.ts", "server.ts", "app.ts", "test/**/*"],
   "exclude": ["node_modules", "dist"]

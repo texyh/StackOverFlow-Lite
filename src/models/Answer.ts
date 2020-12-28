@@ -1,19 +1,17 @@
-import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
-import { Question } from "./Question";
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Question } from './Question';
 
-
-@Entity("Answers")
+@Entity('Answers')
 export class Answer {
+  @PrimaryColumn('uuid')
+  id: string;
 
-    @PrimaryColumn('uuid')
-    id: string;
+  @Column('text')
+  text: string;
 
-    @Column("text")
-    text: string;
+  @ManyToOne(() => Question, (question) => question.answers)
+  question: Question;
 
-    @ManyToOne(() => Question, question => question.answers)
-    question: Question;
-
-    @Column({ type: "bool", default: false })
-    isCorrect: boolean;
+  @Column({ type: 'bool', default: false })
+  isCorrect: boolean;
 }
