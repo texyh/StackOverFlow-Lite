@@ -1,5 +1,7 @@
 import * as express from 'express';
 import {Request, Response} from 'express';
+import * as Joi from 'joi';
+import { validateRequestBody, validateRequestParams } from '../validator';
 import  * as controllers from './controllers'
 
 const routes = express.Router();
@@ -12,7 +14,7 @@ routes.get('/', (req: Request, res: Response) => {
   }).catch(() => res.status(400).send({ error: 'An Error Occured' }));
 });
 
-routes.get('/:id', (req: Request, res: Response) => {
+routes.get('/:id', validateRequestParams(Joi.object({ id: Joi.string().uuid().required() })), (req: Request, res: Response) => {
   controllers.get(req.params.id).then((question) => {
     res.send({
       results: question,
@@ -20,7 +22,7 @@ routes.get('/:id', (req: Request, res: Response) => {
   }).catch(() => res.status(400).send({ error: 'No question with that id exist' }));
 });
 
-routes.post('/', (req: Request, res: Response) => {
+routes.post('/', validateRequestBody(Joi.object({question: Joi.string().min(10).required()})), (req: Request, res: Response) => {
   controllers.save(req.body.question).then((id) => {
     res.status(201).send({
       id: id,
