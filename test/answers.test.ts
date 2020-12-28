@@ -62,6 +62,19 @@ describe('Answer route', () => {
       .send()
       .expect(200)
       .expect(async (res) => {
+        console.log(res.body);
+        const ans = await answerRepository.findOne(answer.id);
+        expect(ans?.isCorrect).to.be.true;
+      })
+      .end(done);
+  });
+
+  it('should mark answer as correct', (done) => {
+    request(app)
+      .put(`/questions/${question.id}/answers/${answer.id}/mark-correct`)
+      .send()
+      .expect(200)
+      .expect(async (res) => {
         const ans = await answerRepository.findOne(answer.id);
         expect(ans?.isCorrect).to.be.true;
       })
